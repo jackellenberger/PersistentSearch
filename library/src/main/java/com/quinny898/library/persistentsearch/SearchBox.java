@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.speech.RecognizerIntent;
@@ -204,6 +205,9 @@ public class SearchBox extends RelativeLayout {
 				popupMenu.show();
 			}
 		});
+
+		this.setDrawerLogo(R.drawable.ic_action_mic);
+		this.setDrawerLogoTint(Color.RED);
 
 		search.addTextChangedListener(new TextWatcher() {
 
@@ -591,7 +595,14 @@ public class SearchBox extends RelativeLayout {
 	
 	public void setDrawerLogo(Integer icon) {
 		setDrawerLogo(getResources().getDrawable(icon));
+		setMenuVisibility(View.INVISIBLE);
 	}
+
+	public void setDrawerLogoTint(int color) {
+		drawerLogo.setColorFilter(color);
+		setMenuVisibility(View.INVISIBLE);
+	}
+
 	
 	/***
 	 * Set the SearchFilter used to filter out results based on the current search term

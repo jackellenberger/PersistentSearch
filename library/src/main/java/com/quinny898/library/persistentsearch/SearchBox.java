@@ -119,7 +119,6 @@ public class SearchBox extends RelativeLayout {
 		this.searchOpen = false;
 		this.isMic = true;
 		this.mUserDisabledMic = false;
-		this.disableMic(true);
 		this.materialMenu = (MaterialMenuView) findViewById(R.id.material_menu_button);
 		this.logo = (TextView) findViewById(R.id.logo);
 		this.search = (EditText) findViewById(R.id.search);
@@ -205,9 +204,6 @@ public class SearchBox extends RelativeLayout {
 				popupMenu.show();
 			}
 		});
-
-		this.setDrawerLogo(R.drawable.ic_action_mic);
-		this.setDrawerLogoTint(Color.RED);
 
 		search.addTextChangedListener(new TextWatcher() {
 

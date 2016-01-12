@@ -80,6 +80,7 @@ public class SearchBox extends RelativeLayout {
 
 	private boolean isVoiceRecognitionIntentSupported;
 	private VoiceRecognitionListener voiceRecognitionListener;
+	private boolean mUserDisabledMic;
 	private Activity mContainerActivity;
 	private Fragment mContainerFragment;
 	private android.support.v4.app.Fragment mContainerSupportFragment;
@@ -116,6 +117,8 @@ public class SearchBox extends RelativeLayout {
 		inflate(context, R.layout.searchbox, this);
 		this.searchOpen = false;
 		this.isMic = true;
+		this.mUserDisabledMic = false;
+		this.disableMic(true);
 		this.materialMenu = (MaterialMenuView) findViewById(R.id.material_menu_button);
 		this.logo = (TextView) findViewById(R.id.logo);
 		this.search = (EditText) findViewById(R.id.search);
@@ -423,7 +426,7 @@ public class SearchBox extends RelativeLayout {
 	}
 
 	private boolean isMicEnabled() {
-		return isVoiceRecognitionIntentSupported && (mContainerActivity != null || mContainerSupportFragment != null || mContainerFragment != null);
+		return  !mUserDisabledMic && isVoiceRecognitionIntentSupported && (mContainerActivity != null || mContainerSupportFragment != null || mContainerFragment != null);
 	}
 
 	private void micStateChanged() {
@@ -433,6 +436,10 @@ public class SearchBox extends RelativeLayout {
 	private void micStateChanged(boolean isMic) {
 		this.isMic = isMic;
 		micStateChanged();
+	}
+
+	public void disableMic(boolean shouldDisable){
+		this.mUserDisabledMic = shouldDisable;
 	}
 
     public void setOverflowMenu(@MenuRes int overflowMenuResId) {

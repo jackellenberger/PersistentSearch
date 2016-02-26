@@ -26,6 +26,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -49,6 +50,9 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK;
 
         public IconState getFirstState() {
+            Log.d("getFirstState",String.valueOf(this));
+            return IconState.X;
+            /*
             switch (this) {
                 case BURGER_ARROW:
                     return IconState.BURGER;
@@ -65,9 +69,13 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 default:
                     return null;
             }
+            */
         }
 
         public IconState getSecondState() {
+            Log.d("getFirstState",String.valueOf(this));
+            return IconState.CHECK;
+            /*
             switch (this) {
                 case BURGER_ARROW:
                     return IconState.ARROW;
@@ -84,6 +92,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 default:
                     return null;
             }
+            */
         }
     }
 
@@ -173,8 +182,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private float   pressedProgressValue  = 0f;
     private boolean transformationRunning = false;
 
-    private IconState      currentIconState = IconState.BURGER;
-    private AnimationState animationState   = AnimationState.BURGER_ARROW;
+    private IconState      currentIconState = IconState.ARROW;
+    private AnimationState animationState   = AnimationState.ARROW_X;
 
     private IconState animatingIconState;
     private boolean   drawTouchCircle;
@@ -362,6 +371,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         iconPaint.setAlpha(255);
     }
 
+
+
     private void drawTopLine(Canvas canvas, float ratio) {
         canvas.save();
 
@@ -395,6 +406,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 startX += dip3 * ratio;
 
                 break;
+
             case BURGER_X:
                 // rotate until required angles
                 rotation = X_TOP_LINE_ANGLE * ratio;
@@ -456,6 +468,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         canvas.drawLine(startX, startY, stopX, stopY, iconPaint);
         iconPaint.setAlpha(255);
     }
+
 
     private void drawBottomLine(Canvas canvas, float ratio) {
         canvas.restore();

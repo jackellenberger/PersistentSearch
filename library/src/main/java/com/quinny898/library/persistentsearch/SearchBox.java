@@ -18,6 +18,7 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -115,6 +116,7 @@ public class SearchBox extends RelativeLayout {
 	 */
 	public SearchBox(final Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		this.isInEditMode(); //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 		inflate(context, R.layout.searchbox, this);
 		this.searchOpen = false;
 		this.isMic = true;
